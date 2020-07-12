@@ -3,7 +3,7 @@ package com.lifecycle.joybar.lifecyclelistener.interfaces;
 import androidx.lifecycle.LifecycleOwner;
 
 /** Created by joybar on 2017/6/29. */
-public interface LifecycleListener {
+public interface DefaultLifecycleObserver {
 
   void onStart(LifecycleOwner lifecycleOwner);
 

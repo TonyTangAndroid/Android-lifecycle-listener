@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import com.lifecycle.joybar.lifecyclelistener.fragment.SupportLifecycleListenerFragment;
-import com.lifecycle.joybar.lifecyclelistener.interfaces.LifecycleListener;
+import com.lifecycle.joybar.lifecyclelistener.interfaces.DefaultLifecycleObserver;
 import com.lifecycle.joybar.lifecyclelistener.util.CheckUtils;
 
 /** Created by joybar on 2017/6/29. */
@@ -43,7 +43,8 @@ public class LifecycleManager {
     }
   }
 
-  public void registerLifecycleListener(Context context, LifecycleListener lifecycleListener) {
+  public void registerLifecycleListener(
+      Context context, DefaultLifecycleObserver lifecycleListener) {
 
     if (context == null) {
       throw new IllegalArgumentException("You cannot start a load on a null Context");
@@ -57,7 +58,8 @@ public class LifecycleManager {
     }
   }
 
-  public void registerLifecycleListener(Fragment fragment, LifecycleListener lifecycleListener) {
+  public void registerLifecycleListener(
+      Fragment fragment, DefaultLifecycleObserver lifecycleListener) {
     if (fragment.getActivity() == null) {
       throw new IllegalArgumentException(
           "You cannot start a load on a fragment before it is attached");
@@ -71,7 +73,7 @@ public class LifecycleManager {
   }
 
   public void handleObserveLifecycle(
-      FragmentActivity activity, LifecycleListener lifecycleListener) {
+      FragmentActivity activity, DefaultLifecycleObserver lifecycleListener) {
     // Log.d(TAG, "this context type  is FragmentActivity");
     if (isDestroyed(activity)) {
       return;
@@ -82,7 +84,7 @@ public class LifecycleManager {
     fragmentLifecycle.addListener(lifecycleListener);
   }
 
-  private void handleObserveLifecycle(Context context, LifecycleListener lifecycleListener) {
+  private void handleObserveLifecycle(Context context, DefaultLifecycleObserver lifecycleListener) {
     // Log.d(TAG, "this context type is Context");
   }
 

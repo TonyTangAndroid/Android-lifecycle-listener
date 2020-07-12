@@ -7,7 +7,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import com.lifecycle.joybar.lifecyclelistener.LifecycleManager;
-import com.lifecycle.joybar.lifecyclelistener.interfaces.LifecycleListener;
+import com.lifecycle.joybar.lifecyclelistener.interfaces.DefaultLifecycleObserver;
 
 /** Created by joybar on 2017/6/30. */
 public class LifecycleTestManager {
@@ -33,7 +33,7 @@ public class LifecycleTestManager {
 
     lifecycleManager.registerLifecycleListener(
         context,
-        new LifecycleListener() {
+        new DefaultLifecycleObserver() {
           @Override
           public void onStart(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onStart");
@@ -74,7 +74,7 @@ public class LifecycleTestManager {
 
     lifecycleManager.registerLifecycleListener(
         fragment,
-        new LifecycleListener() {
+        new DefaultLifecycleObserver() {
           @Override
           public void onStart(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onStart");
