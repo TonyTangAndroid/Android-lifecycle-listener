@@ -1,18 +1,15 @@
 package com.lifecycle.joybar.lifecyclelistener.interfaces;
 
-/**
- * Created by joybar on 2017/6/29.
- */
-
+/** Created by joybar on 2017/6/29. */
 public interface LifecycleListener {
 
-	void onStart();
+  void onStart();
 
-	void onResume();
+  void onResume();
 
-	void onPause();
+  void onPause();
 
-	void onStop();
+  void onStop();
 
-	void onDestroy();
+  void onDestroy();
 }
