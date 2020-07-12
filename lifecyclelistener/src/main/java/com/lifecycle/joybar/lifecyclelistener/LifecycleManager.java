@@ -69,7 +69,7 @@ public class LifecycleManager {
         getSupportRequestManagerFragment(fm);
     FragmentLifecycle fragmentLifecycle =
         getActivitySupportFragmentLifecycle(supportLifecycleListenerFragment);
-    fragmentLifecycle.addListener(lifecycleListener);
+    fragmentLifecycle.addObserver(lifecycleListener);
   }
 
   public void handleObserveLifecycle(
@@ -81,7 +81,7 @@ public class LifecycleManager {
     FragmentManager fm = activity.getSupportFragmentManager();
     SupportLifecycleListenerFragment fragment = getSupportRequestManagerFragment(fm);
     FragmentLifecycle fragmentLifecycle = getActivitySupportFragmentLifecycle(fragment);
-    fragmentLifecycle.addListener(lifecycleListener);
+    fragmentLifecycle.addObserver(lifecycleListener);
   }
 
   private void handleObserveLifecycle(Context context, DefaultLifecycleObserver lifecycleListener) {

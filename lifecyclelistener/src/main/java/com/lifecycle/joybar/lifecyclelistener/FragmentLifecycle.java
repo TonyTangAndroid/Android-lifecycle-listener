@@ -17,7 +17,7 @@ public class FragmentLifecycle implements Lifecycle {
   private final Set<DefaultLifecycleObserver> lifecycleListeners = new HashSet<>();
 
   @Override
-  public void addListener(DefaultLifecycleObserver listener) {
+  public void addObserver(DefaultLifecycleObserver listener) {
     lifecycleListeners.add(listener);
   }
 
@@ -53,7 +53,7 @@ public class FragmentLifecycle implements Lifecycle {
     }
   }
 
-  private void recycleListener(DefaultLifecycleObserver listener) {
+  public void removeObserver(DefaultLifecycleObserver listener) {
     lifecycleListeners.remove(listener);
     listener = null;
   }
