@@ -14,7 +14,7 @@ public class SupportLifecycleListenerFragment extends Fragment {
     this.fragmentLifecycle = new FragmentLifecycle();
   }
 
-  public FragmentLifecycle getLifecycle() {
+  public FragmentLifecycle getFragmentLifecycle() {
     return fragmentLifecycle;
   }
 

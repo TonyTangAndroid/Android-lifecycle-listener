@@ -147,7 +147,7 @@ public class LifecycleManager {
 
   private FragmentLifecycle getActivitySupportFragmentLifecycle(
       SupportLifecycleListenerFragment fragment) {
-    FragmentLifecycle lifecycleListener = fragment.getLifecycle();
+    FragmentLifecycle lifecycleListener = fragment.getFragmentLifecycle();
     if (null == lifecycleListener) {
       lifecycleListener = new FragmentLifecycle();
     }
