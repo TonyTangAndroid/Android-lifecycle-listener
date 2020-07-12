@@ -1,7 +1,7 @@
 package com.lifecycle.joybar.androidlifecyclelistener.util;
 
 import android.os.Looper;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

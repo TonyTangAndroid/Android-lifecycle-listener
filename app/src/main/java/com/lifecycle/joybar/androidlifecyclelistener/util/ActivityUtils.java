@@ -1,17 +1,18 @@
 package com.lifecycle.joybar.androidlifecyclelistener.util;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /** Created by joybar on 2017/6/9. */
 public class ActivityUtils {
 
   public static void addFragmentToActivity(
-      @NonNull android.support.v4.app.FragmentManager fragmentManager,
-      @NonNull android.support.v4.app.Fragment fragment,
-      int frameId) {
+      @NonNull FragmentManager fragmentManager, @NonNull Fragment fragment, int frameId) {
     fragmentManager = CheckUtils.checkNotNull(fragmentManager);
     fragment = CheckUtils.checkNotNull(fragment);
-    android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+    FragmentTransaction transaction = fragmentManager.beginTransaction();
     transaction.add(frameId, fragment);
     transaction.commit();
   }

@@ -3,13 +3,13 @@ package com.lifecycle.joybar.androidlifecyclelistener.lifetest;
 import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import com.lifecycle.joybar.androidlifecyclelistener.LifecycleTestManager;
 
 /** Created by joybar on 2017/6/29. */

@@ -2,8 +2,9 @@ package com.lifecycle.joybar.androidlifecyclelistener;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 import com.lifecycle.joybar.lifecyclelistener.LifecycleManager;
 import com.lifecycle.joybar.lifecyclelistener.interfaces.LifecycleListener;
 
@@ -95,8 +96,7 @@ public class LifecycleTestManager {
         });
   }
 
-  public void registerLifecycleListener(
-      android.support.v4.app.Fragment fragment, final String fragmentTagName) {
+  public void registerLifecycleListener(Fragment fragment, final String fragmentTagName) {
 
     LifecycleManager lifecycleManager = new LifecycleManager(fragmentTagName);
 

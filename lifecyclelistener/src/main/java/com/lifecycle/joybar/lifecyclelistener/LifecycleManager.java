@@ -6,9 +6,11 @@ import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import com.lifecycle.joybar.lifecyclelistener.fragment.LifecycleListenerFragment;
 import com.lifecycle.joybar.lifecyclelistener.fragment.SupportLifecycleListenerFragment;
 import com.lifecycle.joybar.lifecyclelistener.interfaces.LifecycleListener;
@@ -69,13 +71,12 @@ public class LifecycleManager {
     }
   }
 
-  public void registerLifecycleListener(
-      android.support.v4.app.Fragment fragment, LifecycleListener lifecycleListener) {
+  public void registerLifecycleListener(Fragment fragment, LifecycleListener lifecycleListener) {
     if (fragment.getActivity() == null) {
       throw new IllegalArgumentException(
           "You cannot start a load on a fragment before it is attached");
     }
-    android.support.v4.app.FragmentManager fm = fragment.getChildFragmentManager();
+    FragmentManager fm = fragment.getChildFragmentManager();
     SupportLifecycleListenerFragment supportLifecycleListenerFragment =
         getSupportRequestManagerFragment(fm);
     FragmentLifecycle fragmentLifecycle =
@@ -102,7 +103,7 @@ public class LifecycleManager {
     if (isDestroyed(activity)) {
       return;
     }
-    android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+    FragmentManager fm = activity.getSupportFragmentManager();
     SupportLifecycleListenerFragment fragment = getSupportRequestManagerFragment(fm);
     FragmentLifecycle fragmentLifecycle = getActivitySupportFragmentLifecycle(fragment);
     fragmentLifecycle.addListener(lifecycleListener);
@@ -134,8 +135,7 @@ public class LifecycleManager {
     return current;
   }
 
-  private SupportLifecycleListenerFragment getSupportRequestManagerFragment(
-      android.support.v4.app.FragmentManager fm) {
+  private SupportLifecycleListenerFragment getSupportRequestManagerFragment(FragmentManager fm) {
     SupportLifecycleListenerFragment current =
         (SupportLifecycleListenerFragment) fm.findFragmentByTag(getFragmentTag());
     if (current == null) {

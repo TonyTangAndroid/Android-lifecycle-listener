@@ -1,7 +1,7 @@
 package com.lifecycle.joybar.lifecyclelistener.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import com.lifecycle.joybar.lifecyclelistener.FragmentLifecycle;
 
 /** Created by joybar on 2017/6/29. */

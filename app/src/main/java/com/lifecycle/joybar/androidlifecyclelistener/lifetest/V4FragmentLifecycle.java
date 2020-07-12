@@ -1,13 +1,13 @@
 package com.lifecycle.joybar.androidlifecyclelistener.lifetest;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import com.lifecycle.joybar.androidlifecyclelistener.LifecycleTestManager;
 
 /** Created by joybar on 2017/6/29. */
