@@ -19,14 +19,28 @@ public class LifecycleManager {
 
   private static final String FRAGMENT_TAG = "ActivityFragmentLifecycle";
   private static final String TAG = "LifecycleManager";
-  private String fragmentTagName;
-
   private static volatile LifecycleManager mInstance;
+  private String fragmentTagName;
 
   public LifecycleManager() {}
 
   public LifecycleManager(String fragmentTagName) {
     this.fragmentTagName = fragmentTagName;
+  }
+
+  @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+  private static void assertNotDestroyed(Activity activity) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed()) {
+      throw new IllegalArgumentException("You cannot start a load for a destroyed activity");
+    }
+  }
+
+  @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+  private static boolean isDestroyed(Activity activity) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed()) {
+      return true;
+    }
+    return false;
   }
 
   private String getFragmentTag() {
@@ -148,20 +162,5 @@ public class LifecycleManager {
     }
     fragment.setLifecycle(lifecycleListener);
     return lifecycleListener;
-  }
-
-  @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-  private static void assertNotDestroyed(Activity activity) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed()) {
-      throw new IllegalArgumentException("You cannot start a load for a destroyed activity");
-    }
-  }
-
-  @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-  private static boolean isDestroyed(Activity activity) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed()) {
-      return true;
-    }
-    return false;
   }
 }

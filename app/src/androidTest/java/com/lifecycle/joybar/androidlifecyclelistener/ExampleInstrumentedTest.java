@@ -1,6 +1,6 @@
 package com.lifecycle.joybar.androidlifecyclelistener;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
