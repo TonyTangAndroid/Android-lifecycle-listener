@@ -1,15 +1,17 @@
 package com.lifecycle.joybar.lifecyclelistener.interfaces;
 
+import androidx.lifecycle.LifecycleOwner;
+
 /** Created by joybar on 2017/6/29. */
 public interface LifecycleListener {
 
-  void onStart();
+  void onStart(LifecycleOwner lifecycleOwner);
 
-  void onResume();
+  void onResume(LifecycleOwner lifecycleOwner);
 
-  void onPause();
+  void onPause(LifecycleOwner lifecycleOwner);
 
-  void onStop();
+  void onStop(LifecycleOwner lifecycleOwner);
 
-  void onDestroy();
+  void onDestroy(LifecycleOwner lifecycleOwner);
 }

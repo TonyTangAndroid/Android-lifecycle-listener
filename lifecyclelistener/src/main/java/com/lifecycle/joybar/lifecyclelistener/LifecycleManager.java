@@ -7,11 +7,9 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Build;
 import android.text.TextUtils;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import com.lifecycle.joybar.lifecyclelistener.fragment.LifecycleListenerFragment;
 import com.lifecycle.joybar.lifecyclelistener.fragment.SupportLifecycleListenerFragment;
 import com.lifecycle.joybar.lifecyclelistener.interfaces.LifecycleListener;
 import com.lifecycle.joybar.lifecyclelistener.util.CheckUtils;
@@ -31,18 +29,8 @@ public class LifecycleManager {
   }
 
   @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-  private static void assertNotDestroyed(Activity activity) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed()) {
-      throw new IllegalArgumentException("You cannot start a load for a destroyed activity");
-    }
-  }
-
-  @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
   private static boolean isDestroyed(Activity activity) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed()) {
-      return true;
-    }
-    return false;
+    return activity.isDestroyed();
   }
 
   private String getFragmentTag() {
@@ -63,8 +51,6 @@ public class LifecycleManager {
       setDeFaultFragmentName(context);
       if (context instanceof FragmentActivity) {
         handleObserveLifecycle((FragmentActivity) context, lifecycleListener);
-      } else if (context instanceof Activity) {
-        handleObserveLifecycle((Activity) context, lifecycleListener);
       } else if (context instanceof ContextWrapper) {
         handleObserveLifecycle(((ContextWrapper) context).getBaseContext(), lifecycleListener);
       }
@@ -84,19 +70,6 @@ public class LifecycleManager {
     fragmentLifecycle.addListener(lifecycleListener);
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-  public void registerLifecycleListener(
-      android.app.Fragment fragment, LifecycleListener lifecycleListener) {
-    if (fragment.getActivity() == null) {
-      throw new IllegalArgumentException(
-          "You cannot start a load on a fragment before it is attached");
-    }
-    android.app.FragmentManager fm = fragment.getChildFragmentManager();
-    LifecycleListenerFragment lifecycleListenerFragment = getSupportRequestManagerFragment(fm);
-    FragmentLifecycle fragmentLifecycle = getActivityFragmentLifecycle(lifecycleListenerFragment);
-    fragmentLifecycle.addListener(lifecycleListener);
-  }
-
   public void handleObserveLifecycle(
       FragmentActivity activity, LifecycleListener lifecycleListener) {
     // Log.d(TAG, "this context type  is FragmentActivity");
@@ -109,30 +82,8 @@ public class LifecycleManager {
     fragmentLifecycle.addListener(lifecycleListener);
   }
 
-  private void handleObserveLifecycle(Activity activity, LifecycleListener lifecycleListener) {
-    // Log.d(TAG, "this context type  is Activity");
-    if (isDestroyed(activity)) {
-      return;
-    }
-    android.app.FragmentManager fm = activity.getFragmentManager();
-    LifecycleListenerFragment fragment = getSupportRequestManagerFragment(fm);
-    FragmentLifecycle activityFragmentLifecycle = getActivityFragmentLifecycle(fragment);
-    activityFragmentLifecycle.addListener(lifecycleListener);
-  }
-
   private void handleObserveLifecycle(Context context, LifecycleListener lifecycleListener) {
     // Log.d(TAG, "this context type is Context");
-  }
-
-  private LifecycleListenerFragment getSupportRequestManagerFragment(
-      final android.app.FragmentManager fm) {
-    LifecycleListenerFragment current =
-        (LifecycleListenerFragment) fm.findFragmentByTag(getFragmentTag());
-    if (current == null) {
-      current = new LifecycleListenerFragment();
-      fm.beginTransaction().add(current, getFragmentTag()).commitAllowingStateLoss();
-    }
-    return current;
   }
 
   private SupportLifecycleListenerFragment getSupportRequestManagerFragment(FragmentManager fm) {
@@ -148,15 +99,6 @@ public class LifecycleManager {
   private FragmentLifecycle getActivitySupportFragmentLifecycle(
       SupportLifecycleListenerFragment fragment) {
     FragmentLifecycle lifecycleListener = fragment.getFragmentLifecycle();
-    if (null == lifecycleListener) {
-      lifecycleListener = new FragmentLifecycle();
-    }
-    fragment.setLifecycle(lifecycleListener);
-    return lifecycleListener;
-  }
-
-  private FragmentLifecycle getActivityFragmentLifecycle(LifecycleListenerFragment fragment) {
-    FragmentLifecycle lifecycleListener = fragment.getLifecycle();
     if (null == lifecycleListener) {
       lifecycleListener = new FragmentLifecycle();
     }

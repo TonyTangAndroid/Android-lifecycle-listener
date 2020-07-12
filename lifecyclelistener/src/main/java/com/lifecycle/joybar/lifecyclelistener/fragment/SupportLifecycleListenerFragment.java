@@ -31,31 +31,31 @@ public class SupportLifecycleListenerFragment extends Fragment {
   @Override
   public void onStart() {
     super.onStart();
-    fragmentLifecycle.onStart();
+    fragmentLifecycle.onStart(this);
   }
 
   @Override
   public void onResume() {
     super.onResume();
-    fragmentLifecycle.onResume();
+    fragmentLifecycle.onResume(this);
   }
 
   @Override
   public void onPause() {
     super.onPause();
-    fragmentLifecycle.onPause();
+    fragmentLifecycle.onPause(this);
   }
 
   @Override
   public void onStop() {
     super.onStop();
-    fragmentLifecycle.onStop();
+    fragmentLifecycle.onStop(this);
   }
 
   @Override
   public void onDestroy() {
     super.onDestroy();
-    fragmentLifecycle.onDestroy();
+    fragmentLifecycle.onDestroy(this);
   }
 
   @Override

@@ -1,6 +1,7 @@
 package com.lifecycle.joybar.lifecyclelistener;
 
 import android.os.Bundle;
+import androidx.lifecycle.LifecycleOwner;
 import com.lifecycle.joybar.lifecyclelistener.interfaces.Lifecycle;
 import com.lifecycle.joybar.lifecyclelistener.interfaces.LifecycleListener;
 import com.lifecycle.joybar.lifecyclelistener.util.CheckUtils;
@@ -22,33 +23,33 @@ public class FragmentLifecycle implements Lifecycle {
 
   public void onActivityCreated(Bundle savedInstanceState) {}
 
-  public void onStart() {
+  public void onStart(LifecycleOwner lifecycleOwner) {
     for (LifecycleListener lifecycleListener : CheckUtils.getSnapshot(lifecycleListeners)) {
-      lifecycleListener.onStart();
+      lifecycleListener.onStart(lifecycleOwner);
     }
   }
 
-  public void onResume() {
+  public void onResume(LifecycleOwner lifecycleOwner) {
     for (LifecycleListener lifecycleListener : CheckUtils.getSnapshot(lifecycleListeners)) {
-      lifecycleListener.onResume();
+      lifecycleListener.onResume(lifecycleOwner);
     }
   }
 
-  public void onPause() {
+  public void onPause(LifecycleOwner lifecycleOwner) {
     for (LifecycleListener lifecycleListener : CheckUtils.getSnapshot(lifecycleListeners)) {
-      lifecycleListener.onPause();
+      lifecycleListener.onPause(lifecycleOwner);
     }
   }
 
-  public void onStop() {
+  public void onStop(LifecycleOwner lifecycleOwner) {
     for (LifecycleListener lifecycleListener : CheckUtils.getSnapshot(lifecycleListeners)) {
-      lifecycleListener.onStop();
+      lifecycleListener.onStop(lifecycleOwner);
     }
   }
 
-  public void onDestroy() {
+  public void onDestroy(LifecycleOwner lifecycleOwner) {
     for (LifecycleListener lifecycleListener : CheckUtils.getSnapshot(lifecycleListeners)) {
-      lifecycleListener.onDestroy();
+      lifecycleListener.onDestroy(lifecycleOwner);
     }
   }
 

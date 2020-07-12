@@ -5,6 +5,7 @@ import android.os.Build;
 import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import com.lifecycle.joybar.lifecyclelistener.LifecycleManager;
 import com.lifecycle.joybar.lifecyclelistener.interfaces.LifecycleListener;
 
@@ -34,27 +35,27 @@ public class LifecycleTestManager {
         context,
         new LifecycleListener() {
           @Override
-          public void onStart() {
+          public void onStart(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onStart");
           }
 
           @Override
-          public void onResume() {
+          public void onResume(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onResume");
           }
 
           @Override
-          public void onPause() {
+          public void onPause(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onPause");
           }
 
           @Override
-          public void onStop() {
+          public void onStop(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onStop");
           }
 
           @Override
-          public void onDestroy() {
+          public void onDestroy(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onDestroy");
           }
         });
@@ -65,35 +66,6 @@ public class LifecycleTestManager {
       android.app.Fragment fragment, final String fragmentTagName) {
 
     LifecycleManager lifecycleManager = new LifecycleManager(fragmentTagName);
-
-    lifecycleManager.registerLifecycleListener(
-        fragment,
-        new LifecycleListener() {
-          @Override
-          public void onStart() {
-            Log.d(TAG, fragmentTagName + "_" + "onStart");
-          }
-
-          @Override
-          public void onResume() {
-            Log.d(TAG, fragmentTagName + "_" + "onResume");
-          }
-
-          @Override
-          public void onPause() {
-            Log.d(TAG, fragmentTagName + "_" + "onPause");
-          }
-
-          @Override
-          public void onStop() {
-            Log.d(TAG, fragmentTagName + "_" + "onStop");
-          }
-
-          @Override
-          public void onDestroy() {
-            Log.d(TAG, fragmentTagName + "_" + "onDestroy");
-          }
-        });
   }
 
   public void registerLifecycleListener(Fragment fragment, final String fragmentTagName) {
@@ -104,27 +76,27 @@ public class LifecycleTestManager {
         fragment,
         new LifecycleListener() {
           @Override
-          public void onStart() {
+          public void onStart(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onStart");
           }
 
           @Override
-          public void onResume() {
+          public void onResume(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onResume");
           }
 
           @Override
-          public void onPause() {
+          public void onPause(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onPause");
           }
 
           @Override
-          public void onStop() {
+          public void onStop(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onStop");
           }
 
           @Override
-          public void onDestroy() {
+          public void onDestroy(LifecycleOwner lifecycleOwner) {
             Log.d(TAG, fragmentTagName + "_" + "onDestroy");
           }
         });
